@@ -20,8 +20,6 @@ function App() {
         platform: platform,
         topic: topic,
       });
-      console.log(response);
-      // Assuming the response is a text string
       setGeneratedPost(response.data.generatedText);
     } catch (error) {
       console.error('Error generating post:', error);
