@@ -22,7 +22,6 @@ const client = new TextServiceClient({
 });
 
 app.post('/generate-post', (req, res) => {
-    console.log(req.body)
     const platform = req.body.platform;
     const topic = req.body.topic;
 
@@ -36,14 +35,10 @@ app.post('/generate-post', (req, res) => {
             },
         })
         .then((result) => {
-            console.log(JSON.stringify(result, null, 2));
-            console.log("ok");
-            console.log(result[0].candidates[0].output);
             const generatedText = result[0]?.candidates[0]?.output || 'Failed to generate text.';
             res.json({ generatedText });
         })
         .catch((error) => {
-            console.error('Text generation error:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         });
 });
